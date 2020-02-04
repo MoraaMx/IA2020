@@ -1,7 +1,39 @@
 class Calculadora:
     def __init__(self):
+
         self.polinomio1=[]
         self.polinomio2=[]
+        self.mayor=[]
+        self.menor=[]
+        self.resultado=[]
+
+    def setDatos(self):
+
+        grado=int(input("Grado del primer polinomio: "))
+        for i in range(0,grado):
+            print("Grado : ",i+1)
+            valor = int(input("\t Valor: "))
+            self.polinomio1.append(valor)
+        print("\n El primer polinomio es: " )
+        for i in range (0,len(self.polinomio1)):
+            print("+ (",self.polinomio1[i],"x^",i+1,") \t",end="")
+        grado_sp=int(input("\n\n Grado del segundo polinomio: "))
+        for i in range(0,grado_sp):
+            print("Grado : ",i+1)
+            valor_sp = int(input("\t Valor: "))
+            self.polinomio2.append(valor_sp)
+        print("\n El segundo polinomio es: " )
+        for i in range (0,len(self.polinomio2)):
+            print("+ (",self.polinomio2[i],"x^",i+1,") \t",end="")
+
+    def comparaDatos(self):
+       
+        if len(self.polinomio1)>len(self.polinomio2):
+            self.mayor = self.polinomio1
+            self.menor = self.polinomio2
+        else:
+            self.mayor = self.polinomio2
+            self.menor = self.polinomio1 
 
     def menu(self):
         print()
@@ -17,10 +49,16 @@ class Calculadora:
             print(a,b)
         opcion=int(input("Introduzca la opcion deseada: "))
         if opcion==1:
+            self.setDatos()
+            self.comparaDatos()
             self.suma()
         elif opcion==2:
+            self.setDatos()
+            self.comparaDatos()
             self.resta()
         elif opcion==3:
+            self.setDatos()
+            self.comparaDatos()
             self.multiplicacion()
         elif opcion==4:
             self.derivada()
@@ -31,114 +69,41 @@ class Calculadora:
             exit()
     
     def suma(self):
-
-        print("------SUMA-------")
-        grado=int(input("Grado del primer polinomio: "))
-        for i in range(0,grado):
-            print("Grado : ",i+1)
-            valor = int(input("\t Valor: "))
-            self.polinomio1.append(valor)
-        print("\n El primer polinomio es: " )
-        for i in range (0,len(self.polinomio1)):
-            print("+ (",self.polinomio1[i],"x^",i+1,") \t",end="")
-        grado_sp=int(input("\n\n Grado del segundo polinomio: "))
-        for i in range(0,grado_sp):
-            print("Grado : ",i+1)
-            valor_sp = int(input("\t Valor: "))
-            self.polinomio2.append(valor_sp)
-        print("\n El segundo polinomio es: " )
-        for i in range (0,len(self.polinomio2)):
-            print("+ (",self.polinomio2[i],"x^",i+1,") \t",end="")
-        mayor=[]
-        menor=[]
-        resultado=[]
-        if len(self.polinomio1)>len(self.polinomio2):
-            mayor = self.polinomio1
-            menor = self.polinomio2
-        else:
-            mayor = self.polinomio2
-            menor = self.polinomio1
-        for i, _ in enumerate(mayor):
-            if i + 1 > len(menor):
-                resultado.append(mayor[i])
+        print("\n\n------SUMA-------")
+        for i, _ in enumerate(self.mayor):
+            if i + 1 > len(self.menor):
+                self.resultado.append(self.mayor[i])
             else:
-                resultado.append(mayor[i] + menor[i])
+                self.resultado.append(self.mayor[i] + self.menor[i])
         print("\n\n El resultado de la suma de polinomios es : ")        
-        for i in range (0,len(resultado)):
-            print("+ (",resultado[i],"x^",i+1,") \t",end="")
+        for i in range (0,len(self.resultado)):
+            print("+ (",self.resultado[i],"x^",i+1,") \t",end="")
+            
+              
         
     def resta(self):
-        print("----RESTA----")
-        grado=int(input("Grado del primer polinomio: "))
-        for i in range(0,grado):
-            print("Grado : ",i+1)
-            valor = int(input("\t Valor: "))
-            self.polinomio1.append(valor)
-        print("\n El primer polinomio es: " )
-        for i in range (0,len(self.polinomio1)):
-            print("+ (",self.polinomio1[i],"x^",i+1,") \t",end="")
-        grado_sp=int(input("\n\n Grado del segundo polinomio: "))
-        for i in range(0,grado_sp):
-            print("Grado : ",i+1)
-            valor_sp = int(input("\t Valor: "))
-            self.polinomio2.append(valor_sp)
-        print("\n El segundo polinomio es: " )
-        for i in range (0,len(self.polinomio2)):
-            print("+ (",self.polinomio2[i],"x^",i+1,") \t",end="")
-        mayor=[]
-        menor=[]
-        resultado=[]
-        if len(self.polinomio1)>len(self.polinomio2):
-            mayor = self.polinomio1
-            menor = self.polinomio2
-        else:
-            mayor = self.polinomio2
-            menor = self.polinomio1
-        for i, _ in enumerate(mayor):
-            if i + 1 > len(menor):
-                resultado.append(mayor[i])
+        print("\n\n-----RESTA-----")
+        for i, _ in enumerate(self.mayor):
+            if i + 1 > len(self.menor):
+                self.resultado.append(self.mayor[i])
             else:
-                resultado.append(mayor[i] - menor[i])
+                self.resultado.append(-self.mayor[i] + self.menor[i])
         print("\n\n El resultado de la resta de polinomios es : ")        
-        for i in range (0,len(resultado)):
-            print("+ (",resultado[i],"x^",i+1,") \t",end="")
-           
-    def multiplicacion(self):
+        for i in range (0,len(self.resultado)):
+            print("+ (",self.resultado[i],"x^",i+1,") \t",end="")
+         
         
+    def multiplicacion(self):
         print("Multiplicacion")
-        grado=int(input("Grado del primer polinomio: "))
-        for i in range(0,grado):
-            print("Grado : ",i+1)
-            valor = int(input("\t Valor: "))
-            self.polinomio1.append(valor)
-        print("\n El primer polinomio es: " )
-        for i in range (0,len(self.polinomio1)):
-            print("+ (",self.polinomio1[i],"x^",i+1,") \t",end="")
-        grado_sp=int(input("\n\n Grado del segundo polinomio: "))
-        for i in range(0,grado_sp):
-            print("Grado : ",i+1)
-            valor_sp = int(input("\t Valor: "))
-            self.polinomio2.append(valor_sp)
-        print("\n El segundo polinomio es: " )
-        for i in range (0,len(self.polinomio2)):
-            print("+ (",self.polinomio2[i],"x^",i+1,") \t",end="")
-        mayor=[]
-        menor=[]
-        resultado=[]
-        if len(self.polinomio1)>len(self.polinomio2):
-            mayor = self.polinomio1
-            menor = self.polinomio2
-        else:
-            mayor = self.polinomio2
-            menor = self.polinomio1
-        for i, _ in enumerate(mayor):
-            if i + 1 > len(menor):
-                resultado.append(mayor[i])
+        for i, _ in enumerate(self.mayor):
+            if i + 1 > len(self.menor):
+                self.resultado.append(self.mayor[i])
             else:
-                resultado.append(mayor[i] * menor[i])
-        print("\n\n El resultado de la multiplicación de polinomios es : ")        
-        for i in range (0,len(resultado)):
-            print("+ (",resultado[i],"x^",i+1,") \t",end="")
+                self.resultado.append(self.mayor[i] * self.menor[i])
+        print("\n\n El resultado de la multiplicacion de polinomios es : ")        
+        for i in range (0,len(self.resultado)):
+            print("+ (",self.resultado[i],"x^",i+1,") \t",end="")
+       
 
     def derivada(self):
         print("Derivada")
@@ -147,4 +112,5 @@ class Calculadora:
 
 calculadora=Calculadora()
 calculadora.menu()
+
 
