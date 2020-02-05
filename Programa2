@@ -8,7 +8,7 @@ class Calculadora:
         self.resultado=[]
 
     def setDatos(self):
-
+        #Datos de los polinomios, grado y valor
         grado=int(input("Grado del primer polinomio: "))
         for i in range(0,grado):
             print("Grado : ",i+1)
@@ -27,7 +27,7 @@ class Calculadora:
             print("+ (",self.polinomio2[i],"x^",i+1,") \t",end="")
 
     def comparaDatos(self):
-       
+       #Comparamos ambos polinomios con el fin de obtener el de mayor grado
         if len(self.polinomio1)>len(self.polinomio2):
             self.mayor = self.polinomio1
             self.menor = self.polinomio2
@@ -36,7 +36,7 @@ class Calculadora:
             self.menor = self.polinomio1 
 
     def menu(self):
-        print()
+        print("\n\t\t---------- Operaciones con polinomios ----------")
         menu ={
             1:"Suma",
             2:"Resta",
@@ -67,9 +67,12 @@ class Calculadora:
         elif opcion==6:
             print("Saliendo de la calculadora")
             exit()
+        else:
+            input (" Opción inválida, inténtelo de nuevo.\n Presione una tecla para continuar... ")
+            calculadora.menu()
     
     def suma(self):
-        print("\n\n------SUMA-------")
+        print("\n\n------SUMA------")
         for i, _ in enumerate(self.mayor):
             if i + 1 > len(self.menor):
                 self.resultado.append(self.mayor[i])
@@ -78,11 +81,9 @@ class Calculadora:
         print("\n\n El resultado de la suma de polinomios es : ")        
         for i in range (0,len(self.resultado)):
             print("+ (",self.resultado[i],"x^",i+1,") \t",end="")
-            
-              
         
     def resta(self):
-        print("\n\n-----RESTA-----")
+        print("\n\n------RESTA------")
         for i, _ in enumerate(self.mayor):
             if i + 1 > len(self.menor):
                 self.resultado.append(self.mayor[i])
@@ -94,7 +95,7 @@ class Calculadora:
          
         
     def multiplicacion(self):
-        print("Multiplicacion")
+        print("\n\n------MULTIPLICACION------")
         for i, _ in enumerate(self.mayor):
             if i + 1 > len(self.menor):
                 self.resultado.append(self.mayor[i])
@@ -103,14 +104,30 @@ class Calculadora:
         print("\n\n El resultado de la multiplicacion de polinomios es : ")        
         for i in range (0,len(self.resultado)):
             print("+ (",self.resultado[i],"x^",i+1,") \t",end="")
-       
-
+    
     def derivada(self):
-        print("Derivada")
+        print("\n\n------DERIVADA------")
     def integral(self):
-        print("Integral")
+        print("\n\n------INTEGRAL------")
+
+    def caratula(self):
+        unam = "Universidad Nacional Autónoma de México"
+        fi = "Facultad de ingeniería"
+        ia = "Inteligencia artificial"
+        pg = "Programa 2"
+        alum = "Integrantes:"
+        fumo = "Fuentes Mora Oscar Fernando"
+        gagn = "Granados Gómez Nanci Noelia"
+        gle = "Guerrero López Enrique"
+        psvh = "Pólito Seba Víctor Hugo"
+        sem = "Semestre 2020-2"
+        prof = "Profesor: Eduardo Espinosa Ávila"
+        print ( "\n",unam.center(100, " "), "\n",fi.center(100," "), "\n\n",ia.center(100, " "), "\n",pg.center(100, " ") )
+        print ("\n",alum.center(100," "), "\n",fumo.center(100, " "), "\n", gagn.center(100, " "), "\n",gle.center(100, " "))
+        print (psvh.center(102," "),"\n\n",sem.center(100, " "), "\n\n",prof.center(100, " "))
+        input("\n\n\nPresione una tecla para continuar...")
+
 
 calculadora=Calculadora()
+calculadora.caratula()
 calculadora.menu()
-
-
